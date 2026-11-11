@@ -4,8 +4,14 @@ DirectoryIndex index.html
 ErrorDocument 404 /404.html
 Options -Indexes
 
-# Force HTTPS
 RewriteEngine On
+
+# One main address: send ant8.eu, www.ant8.eu and www.ant8.be to https://ant8.be (same page path)
+RewriteCond %{HTTP_HOST} ^(www\.)?ant8\.eu$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www\.ant8\.be$ [NC]
+RewriteRule ^ https://ant8.be%{REQUEST_URI} [L,R=301]
+
+# Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 

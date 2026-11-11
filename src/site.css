@@ -739,7 +739,12 @@ html{font-size:106.25%}
 
 
 /* Contrast fixes */
-.nav-links a{white-space:nowrap}
+.nav-links > li > a{white-space:nowrap}
+/* Services menu: descriptions must wrap inside their own column (they overlapped the next column) */
+.mega-item, .mega-item b, .mega-item small{white-space:normal}
+.mega-item > span:last-child{min-width:0}
+/* Long call-to-action buttons may wrap on small phones instead of overflowing */
+@media (max-width:480px){.srow .acts .btn{white-space:normal;text-align:center}}
 @media (max-width:1180px){.nav-links{display:none}.menu-btn{display:inline-flex;align-items:center;justify-content:center}.navbar .nav-cta{display:none}}
 
 .logo{width:184px}
