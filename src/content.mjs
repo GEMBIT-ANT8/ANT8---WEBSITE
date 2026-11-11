@@ -14,7 +14,7 @@ const CONFIG = {
   address: "Koudebeekstraat 6, 2100 Antwerpen",
   vat: "BE 1023.955.160",
   // External links: left empty until confirmed, rendered as plain text (no dead links).
-  links: { linkedin: "", krisLinkedin: "", gembit: "", logicore: "", logiminds: "", mitralogic: "" }
+  links: { linkedin: "", krisLinkedin: "", gembit: "https://www.gembit.eu/", logicore: "", logiminds: "", mitralogic: "" }
 };
 const IMG = {
   warehouse: "/assets/img/iso-warehouse.webp",

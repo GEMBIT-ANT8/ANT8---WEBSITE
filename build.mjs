@@ -86,7 +86,7 @@ ${ld(orgLd)}${extraLd[key] ? ld(extraLd[key]) : ""}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header${page.overHero ? " over-hero" : ""}" id="header">
   <div class="groupbar"><div class="wrap">
-    <span class="gb-mark"><i aria-hidden="true"></i>Part of Gembit</span>
+    ${extLink("gembit", `<i aria-hidden="true"></i>Part of Gembit`, "gb-mark")}
     <div class="gb-right"><nav class="teams" aria-label="Gembit expertise teams"><span class="lbl">Our expertise teams</span><span aria-current="true">Ant8</span>${extLink("logicore", "Logicore")}${extLink("logiminds", "Logiminds")}${extLink("mitralogic", "Mitralogic")}</nav><span id="__ls"></span></div>
   </div></div>
   <div class="navbar"><div class="wrap">
