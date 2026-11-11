@@ -6,13 +6,16 @@ declare(strict_types=1);
 date_default_timezone_set('Europe/Brussels');
 
 function ant8_private_dir(): ?string {
-  $candidates = [
-    getenv('ANT8_PRIVATE') ?: '',
-    dirname(__DIR__, 2) . '/ant8-private',                       // /home/<user>/ant8-private  (site in public_html)
-    dirname((string)($_SERVER['DOCUMENT_ROOT'] ?? ''), 1) . '/ant8-private',
-  ];
+  // Look in the folders above the website: the site can live in public_html/ (main domain)
+  // or in public_html/<domain>/ (addon domain, e.g. public_html/ant8.be). The private folder
+  // belongs in the home folder, next to public_html.
+  $candidates = [getenv('ANT8_PRIVATE') ?: ''];
+  for ($up = 2; $up <= 4; $up++) $candidates[] = dirname(__DIR__, $up) . '/ant8-private';
   foreach ($candidates as $dir) {
-    if ($dir !== '' && is_file($dir . '/config.php')) return rtrim($dir, '/\\');
+    if ($dir === '' || !is_file($dir . '/config.php')) continue;
+    // Safety: never use a private folder that sits inside the public web folder.
+    if (preg_match('#[/\\\\]public_html([/\\\\]|$)#', $dir)) continue;
+    return rtrim($dir, '/\\');
   }
   return null;
 }

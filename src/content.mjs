@@ -11,8 +11,8 @@ const CONFIG = {
   photos: { "scene-pm": "", "scene-interim": "", "scene-expertise": "", "scene-ant8": "" },
   email: "info@ant8.eu",
   phone: "+32 470 18 20 11", phoneHref: "+32470182011",
-  address: "Koudebeekstraat 6, 2100 Antwerpen",
-  vat: "BE 1023.955.160",
+  address: "Sparrenstraat 19, 9820 Merelbeke-Melle",
+  vat: "BE 1039.591.659",
   // External links: left empty until confirmed, rendered as plain text (no dead links).
   links: { linkedin: "", krisLinkedin: "", gembit: "https://www.gembit.eu/", logicore: "https://www.logicore.be/", logiminds: "https://www.logiminds.be/", mitralogic: "" }
 };

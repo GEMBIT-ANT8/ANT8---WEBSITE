@@ -39,7 +39,7 @@ const orgLd = {
   logo: SITE + "/assets/img/icon-512.png", image: SITE + "/assets/img/og-image.jpg",
   description: "Independent logistics experts: project management, interim management and analysis for warehouses going digital.",
   email: CONFIG.email, telephone: CONFIG.phone, vatID: CONFIG.vat.replace(/[\s.]/g, ""),
-  address: { "@type": "PostalAddress", streetAddress: "Koudebeekstraat 6", postalCode: "2100", addressLocality: "Antwerpen", addressCountry: "BE" },
+  address: { "@type": "PostalAddress", streetAddress: "Sparrenstraat 19", postalCode: "9820", addressLocality: "Merelbeke-Melle", addressCountry: "BE" },
   parentOrganization: { "@type": "Organization", name: "Gembit" }, areaServed: ["BE", "NL", "LU", "FR", "DE"],
   sameAs: [CONFIG.links.linkedin].filter(Boolean)
 };
