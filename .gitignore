@@ -1,4 +1,5 @@
 node_modules/
 dist/
-.vercel/
 .env*
+# Real secrets, CMS data and test emails: never in Git (template: ant8-private.example/)
+ant8-private/

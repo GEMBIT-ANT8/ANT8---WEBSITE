@@ -1,5 +1,5 @@
-// Minimal local server for /dist (no dependencies). The /api/contact endpoint is not emulated locally:
-// forms fall back to a prefilled email when the endpoint does not answer.
+// Minimal local server for /dist (no dependencies). It does not run PHP, so the forms fall back to a
+// prefilled email here. To test the PHP parts locally, use: php -S localhost:8080 -t dist  (see README).
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import { join, extname } from "node:path";

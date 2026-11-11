@@ -1,0 +1,2 @@
+# Shared PHP code: never reachable from the web, only included by other PHP files.
+Require all denied

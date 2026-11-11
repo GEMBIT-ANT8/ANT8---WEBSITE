@@ -1,0 +1,2 @@
+# Safety net: if this folder ever ends up inside the website folder, nobody can open its files from the web.
+Require all denied

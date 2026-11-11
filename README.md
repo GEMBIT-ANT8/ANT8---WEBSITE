@@ -1,6 +1,6 @@
 # ANT8 website
 
-Static, multi-page corporate site for Ant8 (part of Gembit), plus one serverless function for the contact and assessment forms. No framework, no client-side dependencies, no cookies, no trackers.
+Static, multi-page corporate site for Ant8 (part of Gembit), hosted on GoDaddy (cPanel, Apache + PHP). One small PHP endpoint sends the contact and assessment forms through Microsoft 365. No framework, no client-side dependencies, no cookies, no trackers.
 
 ## Run locally
 
@@ -13,7 +13,12 @@ npm run preview    # production build, markers stripped
 npm run check      # production build + verifies every internal link and asset
 ```
 
-The local server does not run `/api/contact`; forms then fall back to opening a prefilled email, which is the expected behaviour.
+The Node preview server does not run PHP; forms then fall back to opening a prefilled email. To test the forms locally, build first and run PHP's own server, with a test config in `ant8-private/` (copy `ant8-private.example/`, set `'mail_mode' => 'file'`; emails then land in `ant8-private/outbox/`):
+
+```
+node build.mjs
+php -S localhost:8080 -t dist
+```
 
 ## Project structure
 
@@ -22,9 +27,11 @@ src/content.mjs     All copy, company data, services, FAQ, assessment questions 
 src/site.css        Design tokens (brand colours, type scale, spacing, radii, motion) and components
 src/runtime.js      Browser behaviour: header, mobile menu, hero video, digital-twin tabs, assessment, forms
 build.mjs           Renders every page to dist/<path>/index.html, plus sitemap.xml, robots.txt, 404.html
-api/contact.js      Vercel serverless function that emails form submissions via Resend
-public/             Static files copied as-is: fonts, images, favicon, video folder
-vercel.json         Build settings, security headers (CSP, HSTS) and caching
+public/             Copied as-is into dist/: fonts, images, favicon, video folder, .htaccess, PHP
+public/.htaccess    Apache settings: main-domain redirect, HTTPS, security headers (CSP, HSTS), caching
+public/api/contact.php   Form endpoint: validates, rate-limits, emails via Microsoft 365 (Graph)
+public/lib/         Shared PHP (not reachable from the web)
+ant8-private.example/    Template for the private settings folder (secrets never go in Git)
 ```
 
 ## Pages
@@ -61,22 +68,19 @@ Images live in `public/assets/img/`. Photo slots are marked in the templates wit
 
 Hero video: follow `public/assets/video/README.md`, then fill `CONFIG.heroVideo`. The video loads only when a source is set, plays muted, inline and looped, and is skipped for visitors with reduced-motion or data-saver settings. Until then, the isometric warehouse illustration is shown.
 
-## Deploying (Vercel)
+## Deploying (GoDaddy cPanel)
 
-1. Push this folder to a Git repository and import it in Vercel. Build command and output folder come from `vercel.json`.
-2. Set environment variables for the form: `RESEND_API_KEY`, `CONTACT_TO` (e.g. `info@ant8.eu`), `CONTACT_FROM` (e.g. `Ant8 website <website@ant8.eu>`). Verify the sending domain in Resend; choose its EU region for GDPR.
-3. Confirm `CONFIG.siteUrl` matches the live domain, then connect the domain in Vercel.
-4. Submit `https://<domain>/sitemap.xml` in Google Search Console.
+1. `npm run check` (or `node build.mjs`), then upload the **contents** of `dist/` into `public_html/` (cPanel File Manager or FTP). Uploading adds and overwrites files; it never deletes server-only folders.
+2. One time only: create `ant8-private/` **next to** `public_html/` (in your home folder, not inside the website), copy both files from `ant8-private.example/` into it and fill in the real values. See `docs/microsoft-365-setup.md` for the Microsoft 365 part.
+3. cPanel → *Select PHP Version*: PHP 8.1 or newer, with the `curl` and `mbstring` extensions enabled.
+4. Submit `https://ant8.be/sitemap.xml` in Google Search Console.
 
-Without the form variables, `/api/contact` answers 503 and the site falls back to a prefilled email, so the form never pretends to send.
-
-Other hosts work too: `dist/` is plain static HTML. Only `api/contact.js` needs porting to that host’s functions (Netlify, Cloudflare, Azure Static Web Apps).
+Without `ant8-private/config.php`, `/api/contact.php` answers 503 and the site falls back to a prefilled email, so the form never pretends to send.
 
 ## Known limitations
 
-- The contact endpoint’s rate limit is per function instance only; add a captcha (e.g. Cloudflare Turnstile) if spam appears.
+- Spam protection is a honeypot field plus 5 submissions per 10 minutes per IP; add a captcha (e.g. Cloudflare Turnstile) if spam appears.
 - Assessment answers are not stored; they travel in the report email.
-- English only.
 - Insights are hand-written templates. With regular publishing, move `PAGES` for insights into a headless CMS (e.g. Sanity or Storyblok); the content blocks map one-to-one.
 
 ## Licences

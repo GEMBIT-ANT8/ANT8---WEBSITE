@@ -3,7 +3,7 @@
 const CONFIG = {
   reviewMode: process.env.REVIEW === "1", // `npm run build:review` shows “Needs ANT8 input” markers.
   siteUrl: "https://ant8.be", // main domain (used for canonical URLs + sitemap); ant8.eu redirects here via public/.htaccess
-  formEndpoint: "/api/contact", // serverless handler in /api/contact.js; set "" to fall back to mailto
+  formEndpoint: "/api/contact.php", // PHP handler in public/api/contact.php (sends via Microsoft 365); set "" to fall back to mailto
   heroHeadline: ["Let’s build your", "logistics together."],
   // Hero video slot. Paste the Higgsfield export URL(s) here (MP4 H.264 + optional WebM).
   heroVideo: { mp4: "", webm: "", mobileMp4: "", poster: "" }, // e.g. mp4: "/assets/video/hero.mp4"
@@ -361,7 +361,7 @@ PAGES.assessment = { title:"Free logistics assessment · Ant8", desc:"How mature
       <div class="hp" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="field" data-f="consent"><label class="check"><input type="checkbox" name="consent"> <span>I agree that Ant8 contacts me about my results. See our <a href="#privacy">privacy notice</a>.</span></label><span class="err">Please tick this box so we can contact you.</span></div>
       <div><button class="btn btn-neon" type="submit">Get your detailed report</button></div>
-      <p class="form-note">Sending opens your email app with your answers and scores filled in, addressed to ${CONFIG.email}.</p>
+      <p class="form-note">Your answers and scores are sent directly to our team. You can also write to ${CONFIG.email}.</p>
       <div class="form-status" role="status"></div>
     </form>
   </div>
@@ -423,7 +423,7 @@ PAGES.contact = { title:"Contact · Talk to a senior logistics expert · Ant8", 
       <div class="hp" aria-hidden="true"><label>Leave empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
       <div class="field" data-f="consent"><label class="check"><input type="checkbox" name="consent"> <span>I agree that Ant8 processes my details to answer my question. See our <a href="#privacy">privacy notice</a>.</span></label><span class="err">Please tick this box so we can answer you.</span></div>
       <div><button class="btn btn-neon" type="submit">Book a call with an expert</button></div>
-      <p class="form-note">Sending opens your email app with your message ready to send to ${CONFIG.email}.</p>
+      <p class="form-note">Your message is sent directly to our team. You can also write to ${CONFIG.email}.</p>
       <div class="form-status" role="status"></div>
     </form></div>
 </div></section>

@@ -84,7 +84,9 @@ main :focus-visible{box-shadow:0 0 0 6px var(--teal)}
 .groupbar .teams span[aria-current]{color:var(--neon);font-weight:700}
 .groupbar a{text-decoration:none}.groupbar a:hover{color:#fff}
 .gb-mark{display:inline-flex;align-items:center;gap:8px}
-.gb-mark i{width:13px;height:13px;border:1.5px solid currentColor;border-radius:3px;display:inline-block}
+.gb-mark{font-weight:600}
+.gb-mark img{width:20px;height:20px;display:block;flex:none;transition:transform var(--t-fast)}
+a.gb-mark:hover img{transform:scale(1.12)}
 .navbar{height:var(--nav);background:var(--band);border-bottom:1px solid rgba(255,251,245,.08);transition:background var(--t-med),border-color var(--t-med),backdrop-filter var(--t-med)}
 .navbar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{display:block;width:118px;flex:none}
