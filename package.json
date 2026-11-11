@@ -1,0 +1,18 @@
+{
+  "name": "ant8-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ANT8 corporate website: static pages + one serverless contact endpoint",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:review": "REVIEW=1 node build.mjs",
+    "dev": "REVIEW=1 node build.mjs && node serve.mjs",
+    "preview": "node build.mjs && node serve.mjs",
+    "check": "node build.mjs && node scripts/check-links.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "node-html-parser": "6.1.13"
+  }
+}
