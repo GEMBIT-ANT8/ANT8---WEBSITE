@@ -14,7 +14,7 @@ const CONFIG = {
   address: "Sparrenstraat 19, 9820 Merelbeke-Melle",
   vat: "BE 1039.591.659",
   // External links: left empty until confirmed, rendered as plain text (no dead links).
-  links: { linkedin: "", krisLinkedin: "", gembit: "https://www.gembit.eu/", logicore: "https://www.logicore.be/", logiminds: "https://www.logiminds.be/", mitralogic: "" }
+  links: { linkedin: "", krisLinkedin: "", gembit: "https://www.gembit.eu/", logicore: "https://www.logicore.be/", logiminds: "", mitralogic: "" }
 };
 const IMG = {
   warehouse: "/assets/img/iso-warehouse.webp",
@@ -307,7 +307,7 @@ ${SERVICES.slice(0,5).map((s,i)=>`
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px;padding-bottom:28px;border-bottom:1px solid var(--line)"><p class="proof" style="display:flex;gap:10px;margin:0">${SPARK}<span>Built by our in-house developers, around your systems.</span></p><a class="btn btn-teal btn-sm" href="#contact" data-topic="AI agents & custom apps">Talk to an expert about AI</a></div>
     <h3 class="h-3" style="margin-top:32px">Ready to use: two proven tools</h3>
-    <p class="muted" style="font-size:.9375rem;margin-top:4px">When the fix already exists, we bring it in. Built by ${extLink("logiminds", "Logiminds", "link")}, part of Gembit.</p>
+    <p class="muted" style="font-size:.9375rem;margin-top:4px">When the fix already exists, we bring it in. Built by Logiminds, part of Gembit.</p>
     <div class="ai-cards" style="margin-top:20px">
       <div class="ai-card"><span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7 7l3 3m4 0l3-3M7 17l3-3m4 0l3 3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg></span>
         <small>Inventory-as-a-Service</small><h4>Count your whole warehouse without stopping it.</h4><p>Drones scan every location while your operation keeps running. No shutdown, no one working at height.</p>
